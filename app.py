@@ -1,17 +1,19 @@
-# -*- coding: utf-8 -*-
-"""
-Éditeur de Spyder
+from socketio_client.manager import Manager
 
-Ceci est un script temporaire.
-"""
+import gevent
+from gevent import monkey;
+monkey.patch_socket()
 
-class Employee: # Définition de notre classe Employee
-   
-    def __init__(self, nom, prenom): # Notre méthode constructeur
-        """Pour l'instant, on ne va définir qu'un seul attribut"""
-        self.nom = nom
-        self.prenom = prenom
-        
-bernard=Employee("fort", "bernard")
-print(bernard.prenom)
-        
+io = Manager(hostname='f765499e.ngrok.io', port=80)
+chat = io.socket('/chat')
+
+@chat.on_connect()
+def chat_connect():
+    chat.emit("Hello")
+
+@chat.on('welcome')
+def chat_welcome():
+    chat.emit("Thanks!")
+
+io.connect()
+gevent.wait()
