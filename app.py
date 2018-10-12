@@ -1,4 +1,7 @@
 from socketIO_client import SocketIO, BaseNamespace
+import logging
+logging.getLogger('socketIO-client').setLevel(logging.DEBUG)
+logging.basicConfig()
 
 class DrawNamespace(BaseNamespace):
 
@@ -15,6 +18,7 @@ class ConnectNamespace(BaseNamespace):
 
 socketIO = SocketIO('3139b29d.ngrok.io', 80)
 print('Client running...')
+
 connect_namespace = socketIO.define(ConnectNamespace, '/connect')
 draw_namespace = socketIO.define(DrawNamespace, '/draw')
 
