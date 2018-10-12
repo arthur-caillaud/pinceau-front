@@ -1,19 +1,23 @@
-from socketio_client.manager import Manager
+from socketIO_client import SocketIO, BaseNamespace
 
-import gevent
-from gevent import monkey;
-monkey.patch_socket()
+class DrawNamespace(BaseNamespace):
 
-io = Manager(hostname='f765499e.ngrok.io', port=80)
-chat = io.socket('/chat')
+    def on_draw_response(self, *args):
+        print('DRAW', args)
 
-@chat.on_connect()
-def chat_connect():
-    chat.emit("Hello")
+class ConnectNamespace(BaseNamespace):
 
-@chat.on('welcome')
-def chat_welcome():
-    chat.emit("Thanks!")
+    def on_connect_response(self, *args):
+        print('CONNECT', args)
 
-io.connect()
-gevent.wait()
+    def on_disconnect_response(self, *args):
+        print('DISCONNECT', args)
+
+socketIO = SocketIO('3139b29d.ngrok.io', 80)
+print('Client running...')
+connect_namespace = socketIO.define(ConnectNamespace, '/connect')
+draw_namespace = socketIO.define(DrawNamespace, '/draw')
+
+connect_namespace.emit('connect')
+draw_namespace.emit('draw')
+socketIO.wait(seconds=3)
