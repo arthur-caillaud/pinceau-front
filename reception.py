@@ -1,17 +1,16 @@
 from threading import Thread
+import json
 
 class Reception(Thread):
-    def __init__(self, connexion, verrou):
+    def __init__(self, connexion, verrou, gui):
         Thread.__init__(self)
         self.__connexion = connexion
         self.__is_running = True
         self.__verrou = verrou
+        self.__gui = gui
 
     def run(self):
         while self.__is_running :
-            message = self.__connexion.recv(1024).decode()
-            if message.upper() == 'STOP':
-                self.__is_running = False
-                self.__connexion.close()
-            else :
-                print message
+            message = json.loads(self.__connexion.recv(1024))
+            message['fill'] = 'red'
+            self.__gui.draw(message)
