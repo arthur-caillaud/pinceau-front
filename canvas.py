@@ -34,6 +34,7 @@ class PinceauCanvas:
 
     def mouse_release(self, event):
         self.__tmp['fill'] = 'blue'
+        self.__tmp['action'] = 'add'
         final_shape = self.create_rectangle(self.__tmp)
         self.__shapes.append(final_shape)
         self.__emissionSocket.send(self.__tmp)
