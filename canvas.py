@@ -1,13 +1,14 @@
 from Tkinter import Canvas
 
 class PinceauCanvas:
-    def __init__(self, master, width, height):
+    def __init__(self, master, emissionSocket, width, height):
         self.__master = master
         self.__width = width
         self.__height = height
         self.__tmp = {}
         self.__tmp_rendered = None
         self.__shapes = []
+        self.__emissionSocket = emissionSocket
 
         self.__canvas = Canvas(self.__master, width=self.__width, height=self.__height)
         self.bind_events()
@@ -22,23 +23,29 @@ class PinceauCanvas:
 
     def mouse_click(self, event):
         self.__canvas.focus_set()
-        self.__tmp = { 'x0': event.x, 'y0': event.y }
+        self.__tmp = { 'x1': event.x, 'y1': event.y }
 
     def mouse_drag(self, event):
-        self.__tmp_rendered = self.create_rectangle_from_mouse(event, 'cyan')
+        self.__canvas.focus_set()
+        self.__tmp['x2'] = event.x
+        self.__tmp['y2'] = event.y
+        self.__tmp['fill'] = 'cyan'
+        self.__tmp_rendered = self.create_rectangle(self.__tmp)
 
     def mouse_release(self, event):
-        final_shape = self.create_rectangle_from_mouse(event, 'blue')
+        self.__tmp['fill'] = 'blue'
+        final_shape = self.create_rectangle(self.__tmp)
         self.__shapes.append(final_shape)
+        self.__emissionSocket.send(self.__tmp)
         # Reset temp shape
         self.__tmp = {}
         self.__tmp_rendered = None
 
-    def create_rectangle_from_mouse(self, event, color):
-        self.__canvas.focus_set()
-        x0 = self.__tmp['x0']
-        y0 = self.__tmp['y0']
-        x1 = event.x
-        y1 = event.y
+    def create_rectangle(self, shape):
+        x1 = shape['x1']
+        x2 = shape['x2']
+        y1 = shape['y1']
+        y2 = shape['y2']
+        fill = shape['fill']
         self.__canvas.delete(self.__tmp_rendered)
-        return self.__canvas.create_rectangle(x0, y0, x1, y1, fill=color)
+        return self.__canvas.create_rectangle(x1, y1, x2, y2, fill=fill)
