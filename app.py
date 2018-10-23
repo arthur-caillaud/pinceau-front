@@ -6,7 +6,7 @@ import time
 from gui import GUI
 from connect import Emission, Reception
 
-port = 5001
+port = 5000
 
 connexion = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 connexion.connect(('localhost', port))

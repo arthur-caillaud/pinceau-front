@@ -5,7 +5,7 @@ from rectangle import Rectangle
 from oval import Oval
 
 class PinceauCanvas:
-    SHAPE_TYPE = 'rectangle'
+    SHAPE_TYPE = 'oval'
     TMP_COLOR = 'magenta'
     FINAL_COLOR = 'red'
 
