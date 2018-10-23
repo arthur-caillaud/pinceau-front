@@ -1,15 +1,15 @@
+# External modules
 import socket
 from threading import Lock
 import time
-
+# Internal modules
 from gui import GUI
 from connect import Emission, Reception
 
-host = "localhost"
-port = 5000
+port = 5001
 
 connexion = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-connexion.connect((host, port))
+connexion.connect(('localhost', port))
 print("Connexion established with server on port {}".format(port))
 
 lock = Lock()

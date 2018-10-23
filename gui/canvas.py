@@ -5,9 +5,9 @@ from rectangle import Rectangle
 from oval import Oval
 
 class PinceauCanvas:
-    SHAPE_TYPE = 'oval'
-    TMP_COLOR = 'cyan'
-    FINAL_COLOR = 'blue'
+    SHAPE_TYPE = 'rectangle'
+    TMP_COLOR = 'magenta'
+    FINAL_COLOR = 'red'
 
     def __init__(self, master, width, height):
         self.__master = master
