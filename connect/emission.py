@@ -18,5 +18,4 @@ class Emission(Thread):
                     self.__cache = None
 
     def send(self, action):
-        with self.__verrou:
-            self.__cache = json.dumps(action)
+        self.__cache = json.dumps(action)

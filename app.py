@@ -1,9 +1,9 @@
-from gui import GUI
 import socket
 from threading import Lock
 import time
-from emission import Emission
-from reception import Reception
+
+from gui import GUI
+from connect import Emission, Reception
 
 host = "localhost"
 port = 5000
@@ -13,10 +13,13 @@ connexion.connect((host, port))
 print("Connexion established with server on port {}".format(port))
 
 lock = Lock()
-emissionThread = Emission(connexion, lock)
-gui = GUI(emissionThread)
-receptionThread = Reception(connexion, lock, gui)
+emission_socket = Emission(connexion, lock)
+gui = GUI()
+reception_socket = Reception(connexion, lock)
 
-emissionThread.start()
-receptionThread.start()
+gui.set_emission_socket(emission_socket)
+reception_socket.set_gui(gui)
+
+emission_socket.start()
+reception_socket.start()
 gui.run()
