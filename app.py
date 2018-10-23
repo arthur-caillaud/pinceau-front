@@ -6,7 +6,7 @@ from emission import Emission
 from reception import Reception
 
 host = "localhost"
-port = 5001
+port = 5000
 
 connexion = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 connexion.connect((host, port))

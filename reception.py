@@ -11,6 +11,7 @@ class Reception(Thread):
 
     def run(self):
         while self.__is_running :
-            message = json.loads(self.__connexion.recv(1024))
-            message['fill'] = 'red'
-            self.__gui.draw(message)
+            with self.__verrou:
+                message = json.loads(self.__connexion.recv(1024))
+                message['fill'] = 'red'
+                self.__gui.draw(message)
