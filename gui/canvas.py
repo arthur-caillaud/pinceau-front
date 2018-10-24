@@ -1,10 +1,10 @@
 # External modules
 from Tkinter import Canvas
 # Internal modules
-from shapes import Circle, Oval, Rectangle, Square
+from shapes import Oval, Rectangle, Line, Circle, Square, Diagonal
 
 class PinceauCanvas:
-    SHAPE_TYPE = 'oval'
+    SHAPE_TYPE = 'line'
     TMP_COLOR = 'magenta'
     FINAL_COLOR = 'red'
 
@@ -70,10 +70,14 @@ class PinceauCanvas:
         rendered_shape = None
         if shape['type'] == 'rectangle' and shape['mode'] == 'normal':
             rendered_shape = Rectangle(shape)
-        elif shape['type'] == 'oval' and shape['mode'] == 'normal':
-            rendered_shape = Oval(shape)
         elif shape['type'] == 'rectangle' and shape['mode'] == 'straight':
             rendered_shape = Square(shape)
+        elif shape['type'] == 'oval' and shape['mode'] == 'normal':
+            rendered_shape = Oval(shape)
         elif shape['type'] == 'oval' and shape['mode'] == 'straight':
             rendered_shape = Circle(shape)
+        elif shape['type'] == 'line' and shape['mode'] == 'normal':
+            rendered_shape = Line(shape)
+        elif shape['type'] == 'line' and shape['mode'] == 'straight':
+            rendered_shape = Diagonal(shape)
         return rendered_shape.draw_on(self.__canvas)

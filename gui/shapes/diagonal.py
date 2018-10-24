@@ -1,7 +1,7 @@
 from straight_shape import StraightShape
-from oval import Oval
+from line import Line
 
-class Circle(Oval, StraightShape):
+class Diagonal(Line, StraightShape):
     def __init__(self, shape):
-        Oval.__init__(self, shape)
+        Line.__init__(self, shape)
         StraightShape.__init__(self, shape)
