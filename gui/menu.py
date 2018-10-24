@@ -18,6 +18,9 @@ class PinceauMenu:
         Button(self.__color_buttons, text="Green", command=self.change_to_green).pack(side=LEFT)
         Button(self.__color_buttons, text="Blue", command=self.change_to_blue).pack(side=LEFT)
         Button(self.__color_buttons, text="Orange", command=self.change_to_orange).pack(side=LEFT)
+        Button(self.__color_buttons, text="Yellow", command=self.change_to_yellow).pack(side=LEFT)
+        Button(self.__color_buttons, text="Purple", command=self.change_to_purple).pack(side=LEFT)
+        Button(self.__color_buttons, text="Pink", command=self.change_to_pink).pack(side=LEFT)
 
     def change_to_rectangle(self):
         self.__change_shape('rectangle')
@@ -29,13 +32,22 @@ class PinceauMenu:
         self.__change_shape('line')
 
     def change_to_red(self):
-        self.__change_color('magenta', 'red')
+        self.__change_color('#E57373', '#F44336')
 
     def change_to_green(self):
-        self.__change_color('green', 'green')
+        self.__change_color('#81C784', '#4CAF50')
 
     def change_to_blue(self):
-        self.__change_color('cyan', 'blue')
+        self.__change_color('#64B5F6', '#2196F3')
 
     def change_to_orange(self):
-        self.__change_color('yellow', 'orange')
+        self.__change_color('#FFB74D', '#FF9800')
+
+    def change_to_yellow(self):
+        self.__change_color('#FFF176', '#FFEB3B')
+
+    def change_to_purple(self):
+        self.__change_color('#9575CD', '#673AB7')
+
+    def change_to_pink(self):
+        self.__change_color('#F06292', '#E91E63')

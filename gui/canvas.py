@@ -16,8 +16,8 @@ class PinceauCanvas:
         # Default constants
         self.__shape_mode = 'normal'
         self.__shape_type = 'rectangle'
-        self.__tmp_color = 'magenta'
-        self.__final_color = 'red'
+        self.__tmp_color = '#E57373'
+        self.__final_color = '#F44336'
 
         self.__canvas = Canvas(self.__master, width=self.__width, height=self.__height)
         self.__canvas.grid(row=2, column=0)
