@@ -1,10 +1,7 @@
 # External modules
 from Tkinter import Canvas
 # Internal modules
-from rectangle import Rectangle
-from oval import Oval
-from circle import Circle
-from square import Square
+from shapes import Circle, Oval, Rectangle, Square
 
 class PinceauCanvas:
     SHAPE_TYPE = 'oval'
@@ -28,10 +25,7 @@ class PinceauCanvas:
         self.__emission_socket = emission_socket
 
     def switch_shape_mode(self):
-        if self.__shape_mode == 'straight':
-            self.__shape_mode = 'normal'
-        elif self.__shape_mode == 'normal':
-            self.__shape_mode = 'straight'
+        self.__shape_mode = ('straight' if self.__shape_mode == 'normal' else 'normal')
 
     def pack(self):
         self.__canvas.pack()
