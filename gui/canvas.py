@@ -4,9 +4,6 @@ from Tkinter import Canvas
 from shapes import Oval, Rectangle, Line, Circle, Square, Diagonal
 
 class PinceauCanvas:
-    SHAPE_TYPE = 'line'
-    TMP_COLOR = 'magenta'
-    FINAL_COLOR = 'red'
 
     def __init__(self, master, width, height):
         self.__master = master
@@ -16,9 +13,14 @@ class PinceauCanvas:
         self.__tmp_rendered = None
         self.__shapes = []
         self.__emission_socket = None
+        # Default constants
         self.__shape_mode = 'normal'
+        self.__shape_type = 'rectangle'
+        self.__tmp_color = 'magenta'
+        self.__final_color = 'red'
 
         self.__canvas = Canvas(self.__master, width=self.__width, height=self.__height)
+        self.__canvas.grid(row=2, column=0)
         self.bind_events()
 
     def set_emission_socket(self, emission_socket):
@@ -26,6 +28,13 @@ class PinceauCanvas:
 
     def switch_shape_mode(self):
         self.__shape_mode = ('straight' if self.__shape_mode == 'normal' else 'normal')
+
+    def change_color(self, tmp_color, color):
+        self.__tmp_color = tmp_color
+        self.__final_color = color
+
+    def change_shape(self, shape_type):
+        self.__shape_type = shape_type
 
     def pack(self):
         self.__canvas.pack()
@@ -51,12 +60,12 @@ class PinceauCanvas:
         self.__tmp['x2'] = event.x
         self.__tmp['y2'] = event.y
         self.__tmp['mode'] = self.__shape_mode
-        self.__tmp['type'] = PinceauCanvas.SHAPE_TYPE
-        self.__tmp['fill'] = PinceauCanvas.TMP_COLOR
+        self.__tmp['type'] = self.__shape_type
+        self.__tmp['fill'] = self.__tmp_color
         self.__tmp_rendered = self.draw(self.__tmp)
 
     def mouse_release(self, event):
-        self.__tmp['fill'] = PinceauCanvas.FINAL_COLOR
+        self.__tmp['fill'] = self.__final_color
         if self.__tmp['type'] is not None:
             final_shape = self.draw(self.__tmp)
             self.__shapes.append(final_shape)
