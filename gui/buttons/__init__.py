@@ -1,2 +1,5 @@
-from colors import BlueButton, GreenButton, OrangeButton, PinkButton, PurpleButton, RedButton, YellowButton
-from shapes import LineButton, RectangleButton, OvalButton
+from colors import ColorButton
+from shapes import ShapeButton
+
+create_ColorButton = ColorButton.create
+create_ShapeButton = ShapeButton.create

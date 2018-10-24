@@ -9,6 +9,29 @@ class ColorButton:
         self.__change_color = lambda: change_color(self.__tmp_color, self.__final_color)
         self.__button = Button(self.__frame, text=self.__color.upper(), command=self.__change_color)
 
+    @staticmethod
+    def create(frame, color, change_color):
+        if color == 'red':
+            return RedButton(frame, change_color)
+        elif color == 'green':
+            return GreenButton(frame, change_color)
+        elif color == 'blue':
+            return BlueButton(frame, change_color)
+        elif color == 'orange':
+            return OrangeButton(frame, change_color)
+        elif color == 'yellow':
+            return YellowButton(frame, change_color)
+        elif color == 'purple':
+            return PurpleButton(frame, change_color)
+        elif color == 'pink':
+            return PinkButton(frame, change_color)
+        elif color == 'brown':
+            return BrownButton(frame, change_color)
+        elif color == 'white':
+            return WhiteButton(frame, change_color)
+        elif color == 'black':
+            return BlackButton(frame, change_color)
+
     def pack(self):
         self.__button.pack(side = LEFT)
 
@@ -28,6 +51,12 @@ class ColorButton:
             return '#9575CD'
         elif color == 'pink':
             return '#F06292'
+        elif color == 'brown':
+            return '#A1887F'
+        elif color == 'white':
+            return '#FAFAFA'
+        elif color == 'black':
+            return '#424242'
 
     @staticmethod
     def to_final_color(color):
@@ -45,6 +74,12 @@ class ColorButton:
             return '#673AB7'
         elif color == 'pink':
             return '#E91E63'
+        elif color == 'brown':
+            return '#795548'
+        elif color == 'white':
+            return '#FFFFFF'
+        elif color == 'black':
+            return '#212121'
 
 class RedButton(ColorButton):
     def __init__(self, frame, change_color):
@@ -73,3 +108,15 @@ class PurpleButton(ColorButton):
 class PinkButton(ColorButton):
     def __init__(self, frame, change_color):
         ColorButton.__init__(self, frame, 'pink', change_color)
+
+class BrownButton(ColorButton):
+    def __init__(self, frame, change_color):
+        ColorButton.__init__(self, frame, 'brown', change_color)
+
+class WhiteButton(ColorButton):
+    def __init__(self, frame, change_color):
+        ColorButton.__init__(self, frame, 'white', change_color)
+
+class BlackButton(ColorButton):
+    def __init__(self, frame, change_color):
+        ColorButton.__init__(self, frame, 'black', change_color)

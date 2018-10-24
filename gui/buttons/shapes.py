@@ -7,6 +7,15 @@ class ShapeButton:
         self.__change_shape = lambda: change_shape(self.__shape)
         self.__button = Button(self.__frame, text=self.__shape.upper(), command=self.__change_shape)
 
+    @staticmethod
+    def create(frame, shape, change_shape):
+        if shape == 'rectangle':
+            return RectangleButton(frame, change_shape)
+        elif shape == 'oval':
+            return OvalButton(frame, change_shape)
+        elif shape == 'line':
+            return LineButton(frame, change_shape)
+
     def pack(self):
         self.__button.pack(side = LEFT)
 
