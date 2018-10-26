@@ -1,7 +1,10 @@
 # External modules
-from Tkinter import Canvas
+try:
+    from Tkinter import Canvas
+except:
+    from tkinter import Canvas
 # Internal modules
-from shapes import Oval, Rectangle, Line, Circle, Square, Diagonal
+from shapes import Oval, Rectangle, Line, Circle, Square, Diagonal, Sticker
 
 class PinceauCanvas:
 
@@ -53,15 +56,22 @@ class PinceauCanvas:
 
     def mouse_click(self, event):
         self.__canvas.focus_set()
-        self.__tmp = { 'x1': event.x, 'y1': event.y, 'action': 'add' }
+        self.__tmp = {
+            'action': 'add',
+            'x1': event.x,
+            'y1': event.y,
+            'x2': event.x,
+            'y2': event.y,
+            'mode': self.__shape_mode,
+            'type': self.__shape_type,
+            'fill': self.__tmp_color
+        }
 
     def mouse_drag(self, event):
         self.__canvas.focus_set()
         self.__tmp['x2'] = event.x
         self.__tmp['y2'] = event.y
         self.__tmp['mode'] = self.__shape_mode
-        self.__tmp['type'] = self.__shape_type
-        self.__tmp['fill'] = self.__tmp_color
         self.__tmp_rendered = self.draw(self.__tmp)
 
     def mouse_release(self, event):
@@ -89,4 +99,6 @@ class PinceauCanvas:
             rendered_shape = Line(shape)
         elif shape['type'] == 'line' and shape['mode'] == 'straight':
             rendered_shape = Diagonal(shape)
+        elif shape['type'] == 'sticker':
+            rendered_shape = Sticker(shape)
         return rendered_shape.draw_on(self.__canvas)

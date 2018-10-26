@@ -1,4 +1,7 @@
-from Tkinter import Button, BOTTOM, LEFT
+try:
+    from Tkinter import Button, BOTTOM, LEFT
+except:
+    from tkinter import Button, BOTTOM, LEFT
 
 class ColorButton:
     def __init__(self, frame, color, change_color):

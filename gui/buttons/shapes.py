@@ -1,4 +1,7 @@
-from Tkinter import Button, BOTTOM, LEFT
+try:
+    from Tkinter import Button, BOTTOM, LEFT
+except:
+    from tkinter import Button, BOTTOM, LEFT
 
 class ShapeButton:
     def __init__(self, frame, shape, change_shape):
@@ -15,6 +18,8 @@ class ShapeButton:
             return OvalButton(frame, change_shape)
         elif shape == 'line':
             return LineButton(frame, change_shape)
+        elif shape == 'sticker':
+            return StickerButton(frame, change_shape)
 
     def pack(self):
         self.__button.pack(side = LEFT)
@@ -30,3 +35,7 @@ class OvalButton(ShapeButton):
 class LineButton(ShapeButton):
     def __init__(self, frame, change_shape):
         ShapeButton.__init__(self, frame, 'line', change_shape)
+
+class StickerButton(ShapeButton):
+    def __init__(self, frame, change_shape):
+        ShapeButton.__init__(self, frame, 'sticker', change_shape)

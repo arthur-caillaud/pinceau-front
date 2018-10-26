@@ -1,4 +1,7 @@
-from Tkinter import Frame, BOTTOM
+try:
+    from Tkinter import Frame, BOTTOM
+except:
+    from tkinter import Frame, BOTTOM
 from buttons import create_ColorButton, create_ShapeButton
 
 class PinceauMenu:
@@ -9,7 +12,7 @@ class PinceauMenu:
         self.__change_color = change_color
         self.__change_shape = change_shape
         self.__color_buttons = ['red', 'green', 'blue', 'orange', 'yellow', 'purple', 'pink', 'brown', 'white', 'black']
-        self.__shape_buttons = ['rectangle', 'oval', 'line']
+        self.__shape_buttons = ['rectangle', 'oval', 'line', 'sticker']
 
     def pack(self):
         self.__color_buttons_frame.pack(side = BOTTOM)

@@ -1,4 +1,7 @@
-from Tkinter import Tk
+try:
+    from Tkinter import Tk
+except:
+    from tkinter import Tk
 from canvas import PinceauCanvas
 from menu import PinceauMenu
 
