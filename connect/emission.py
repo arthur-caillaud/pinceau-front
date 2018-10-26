@@ -10,12 +10,16 @@ class Emission(Thread):
         self.__cache = None
 
     def run(self):
+        self.connect()
         while self.__is_running :
             with self.__verrou:
                 message = self.__cache
                 if message != None:
-                    self.__connexion.send(message.encode())
+                    self.__connexion.send(message)
                     self.__cache = None
 
     def send(self, action):
-        self.__cache = json.dumps(action)
+        self.__cache = json.dumps(action).encode()
+
+    def connect(self):
+        self.send({'action': 'connect'})

@@ -17,8 +17,8 @@ emission_socket = Emission(connexion, lock)
 gui = GUI()
 reception_socket = Reception(connexion, lock)
 
-gui.set_emission_socket(emission_socket)
-reception_socket.set_gui(gui)
+gui.set_send(emission_socket.send)
+reception_socket.set_draw(gui.draw)
 
 emission_socket.start()
 reception_socket.start()

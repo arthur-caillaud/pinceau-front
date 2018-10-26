@@ -7,7 +7,6 @@ except:
 from shapes import Oval, Rectangle, Line, Circle, Square, Diagonal, Sticker
 
 class PinceauCanvas:
-
     def __init__(self, master, width, height):
         self.__master = master
         self.__width = width
@@ -15,7 +14,6 @@ class PinceauCanvas:
         self.__tmp = {}
         self.__tmp_rendered = None
         self.__shapes = []
-        self.__emission_socket = None
         # Default constants
         self.__shape_mode = 'normal'
         self.__shape_type = 'rectangle'
@@ -23,11 +21,10 @@ class PinceauCanvas:
         self.__final_color = '#F44336'
 
         self.__canvas = Canvas(self.__master, width=self.__width, height=self.__height)
-        self.__canvas.grid(row=2, column=0)
         self.bind_events()
 
-    def set_emission_socket(self, emission_socket):
-        self.__emission_socket = emission_socket
+    def set_send(self, send_func):
+        self.__send = send_func
 
     def switch_shape_mode(self):
         self.__shape_mode = ('straight' if self.__shape_mode == 'normal' else 'normal')
@@ -79,7 +76,7 @@ class PinceauCanvas:
         if self.__tmp['type'] is not None:
             final_shape = self.draw(self.__tmp)
             self.__shapes.append(final_shape)
-            self.__emission_socket.send(self.__tmp)
+            self.__send(self.__tmp)
         # Reset temp shape
         self.__tmp = {}
         self.__tmp_rendered = None

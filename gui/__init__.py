@@ -21,5 +21,5 @@ class GUI:
     def draw(self, shape):
         self.__canvas.draw(shape)
 
-    def set_emission_socket(self, emission_socket):
-        self.__canvas.set_emission_socket(emission_socket)
+    def set_send(self, send_func):
+        self.__canvas.set_send(send_func)
