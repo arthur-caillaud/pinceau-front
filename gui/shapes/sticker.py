@@ -1,7 +1,7 @@
 from straight_shape import StraightShape
 try:
     from Tkinter import PhotoImage, NW
-except:
+except ImportError:
     from tkinter import PhotoImage, NW
 from PIL import ImageTk, Image
 

@@ -1,7 +1,9 @@
+# External Modules
 try:
     from Tkinter import Tk
-except:
+except ImportError:
     from tkinter import Tk
+# Internal Modules
 from canvas import PinceauCanvas
 from menu import PinceauMenu
 

@@ -1,6 +1,6 @@
 try:
     from Tkinter import Button, BOTTOM, LEFT
-except:
+except ImportError:
     from tkinter import Button, BOTTOM, LEFT
 
 class ShapeButton:

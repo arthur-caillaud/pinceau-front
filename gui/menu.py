@@ -1,6 +1,6 @@
 try:
     from Tkinter import Frame, BOTTOM
-except:
+except ImportError:
     from tkinter import Frame, BOTTOM
 from buttons import create_ColorButton, create_ShapeButton
 
