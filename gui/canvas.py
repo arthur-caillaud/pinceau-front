@@ -48,7 +48,7 @@ class PinceauCanvas:
 
     def key_press(self, event):
         keycode = event.keycode
-        if keycode == 131330 or keycode == 131074 or keycode == 131076: # Maj key is pressed
+        if keycode == 131330 or keycode == 131074 or keycode == 131076 or keycode == 16: # Maj key is pressed
             self.switch_shape_mode()
 
     def mouse_click(self, event):
