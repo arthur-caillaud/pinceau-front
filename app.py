@@ -9,7 +9,7 @@ from connect import Emission, Reception
 port = 5000
 
 connexion = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-connexion.connect(('localhost', port))
+connexion.connect(('138.195.244.85', port))
 print("Connexion established with server on port {}".format(port))
 
 lock = Lock()
