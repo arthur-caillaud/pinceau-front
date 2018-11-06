@@ -5,5 +5,3 @@ try:
 except ImportError:
     from connect.emission import Emission
     from connect.reception import Reception
-
-    
