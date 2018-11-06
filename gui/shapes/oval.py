@@ -1,4 +1,8 @@
-from shape import Shape
+# Internal modules
+try:
+    from shape import Shape
+except ImportError:
+    from gui.shapes.shape import Shape
 
 class Oval(Shape):
     def __init__(self, shape):

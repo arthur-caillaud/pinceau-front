@@ -4,8 +4,13 @@ try:
 except ImportError:
     from tkinter import Tk
 # Internal Modules
-from canvas import PinceauCanvas
-from menu import PinceauMenu
+try:
+    from canvas import PinceauCanvas
+    from menu import PinceauMenu
+except ImportError:
+    from gui.canvas import PinceauCanvas
+    from gui.menu import PinceauMenu
+
 
 class GUI:
     def __init__(self):

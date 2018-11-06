@@ -1,8 +1,13 @@
+# External modules
 try:
     from Tkinter import Frame, BOTTOM
 except ImportError:
     from tkinter import Frame, BOTTOM
-from buttons import create_ColorButton, create_ShapeButton
+# Internal modules
+try:
+    from buttons import create_ColorButton, create_ShapeButton
+except ImportError:
+    from gui.buttons import create_ColorButton, create_ShapeButton
 
 class PinceauMenu:
     def __init__(self, master, change_color, change_shape):

@@ -1,3 +1,4 @@
+# External modules
 from threading import Thread
 import json
 
@@ -16,7 +17,7 @@ class Reception(Thread):
         is_running = self.is_running()
         while is_running :
             connexion, verrou, cache = self.get_connexion(), self.get_verrou(), self.get_cache()
-            message = cache + connexion.recv(1024)
+            message = cache + connexion.recv(1024).decode()
             try:
                 shapes = json.loads(message)
                 self.set_cache('')

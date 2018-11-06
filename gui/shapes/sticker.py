@@ -1,9 +1,14 @@
-from straight_shape import StraightShape
+# External modules
+from PIL import ImageTk, Image
 try:
     from Tkinter import PhotoImage, NW
 except ImportError:
     from tkinter import PhotoImage, NW
-from PIL import ImageTk, Image
+# Internal modules
+try:
+    from straight_shape import StraightShape
+except ImportError:
+    from gui.shapes.straight_shape import StraightShape
 
 class Sticker(StraightShape):
     def __init__(self, shape):

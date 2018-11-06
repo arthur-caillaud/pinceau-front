@@ -4,7 +4,10 @@ try:
 except ImportError:
     from tkinter import Canvas
 # Internal modules
-from shapes import Oval, Rectangle, Line, Circle, Square, Diagonal, Sticker
+try:
+    from shapes import Oval, Rectangle, Line, Circle, Square, Diagonal, Sticker
+except ImportError:
+    from gui.shapes import Oval, Rectangle, Line, Circle, Square, Diagonal, Sticker
 
 class PinceauCanvas:
     def __init__(self, master, width, height):

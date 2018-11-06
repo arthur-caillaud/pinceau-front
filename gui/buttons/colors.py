@@ -1,3 +1,4 @@
+# External modules
 try:
     from Tkinter import Button, BOTTOM, LEFT
 except ImportError:
