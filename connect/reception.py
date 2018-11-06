@@ -21,9 +21,14 @@ class Reception(Thread):
                 self.__cache = ''
                 with self.__verrou:
                     for shape in shapes:
-                        self.draw(shape)
+                        if shape['action'] == 'add':
+                            self.draw(shape)
+                        elif shape['action'] == 'erase':
+                            self.erase(shape)
             except:
                 self.__cache = message
     # Setters
     def set_draw(self, draw_func):
         self.draw = draw_func
+    def set_erase(self, erase_func):
+        self.erase = erase_func

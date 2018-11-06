@@ -64,7 +64,9 @@ class PinceauCanvas:
         self.__canvas.focus_set()
         x, y = event.x, event.y
         if self.__draw_mode == 'erase':
-            self.erase_shape(x, y)
+            action = {'action': 'erase', 'x': x, 'y': y}
+            self.erase(action)
+            self.__send(action)
         elif self.__draw_mode == 'add':
             self.__tmp = {
                 'action': 'add',
@@ -77,8 +79,10 @@ class PinceauCanvas:
                 'fill': self.__tmp_color
             }
 
-    def erase_shape(self, x, y):
-        for shape in self.__shapes:
+    def erase(self, action):
+        x, y = action['x'], action['y']
+        shape = self.__canvas.find_closest(x, y)
+        if shape:
             self.__canvas.delete(shape)
 
     def mouse_drag(self, event):

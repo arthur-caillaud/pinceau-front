@@ -21,12 +21,14 @@ class GUI:
         self.__menu = PinceauMenu(self.__root, self.__canvas.change_color, self.__canvas.change_shape)
         self.__menu.pack()
         self.__canvas.pack()
-
+    # Main loop
     def run(self):
         self.__root.mainloop()
-
+    # Exposed methods
     def draw(self, shape):
         self.__canvas.draw(shape)
-
+    def erase(self, shape):
+        self.__canvas.erase(shape)
+    # Setters
     def set_send(self, send_func):
         self.__canvas.set_send(send_func)

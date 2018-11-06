@@ -19,6 +19,7 @@ reception_socket = Reception(connexion, lock)
 
 gui.set_send(emission_socket.send)
 reception_socket.set_draw(gui.draw)
+reception_socket.set_erase(gui.erase)
 
 emission_socket.start()
 reception_socket.start()
