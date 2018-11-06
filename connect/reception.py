@@ -15,11 +15,11 @@ class Reception(Thread):
     # Methods
     def run(self):
         while self.__is_running :
-            message = self.__cache + connexion.recv(1024).decode()
+            message = self.__cache + self.__connexion.recv(1024).decode()
             try:
                 shapes = json.loads(message)
                 self.__cache = ''
-                with verrou:
+                with self.__verrou:
                     for shape in shapes:
                         self.draw(shape)
             except:

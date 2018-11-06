@@ -23,7 +23,7 @@ class PinceauCanvas:
         self.__shape_type = 'rectangle'
         self.__tmp_color = '#E57373'
         self.__final_color = '#F44336'
-
+        # Main canvas
         self.__canvas = Canvas(self.__master, width=self.__width, height=self.__height)
         self.bind_events()
 
@@ -117,4 +117,5 @@ class PinceauCanvas:
             rendered_shape = Diagonal(shape)
         elif shape['type'] == 'sticker':
             rendered_shape = Sticker(shape)
-        return rendered_shape.draw_on(self.__canvas)
+        shape_id = rendered_shape.draw_on(self.__canvas)
+        return shape_id
