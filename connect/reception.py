@@ -5,7 +5,7 @@ import json
 # Each object of this class is a Thread that will be running when,
 # the user is listening to the server to know if ant new shape has been drawn.
 class Reception(Thread):
-    # Constructors
+    # Constructor
     def __init__(self, connexion, verrou):
         # Reception is a child of Thread
         Thread.__init__(self)
@@ -13,11 +13,9 @@ class Reception(Thread):
         self.__connexion = connexion
         self.__is_running = True
         self.__verrou = verrou
-        # The cache is used to store all the existing shapes on the
-        # whiteboard when a new client is connecting. Indeed, he needs to
-        # receive all the shapes drawn by other clients before.
-        # For decoding purposes, we reshape the message composed of maybe
-        # +1024 characters.
+        # The cache is used if the length of the incoming message is greater than 1024B
+        # But as we are decoding JSON we need to have the whole message
+        # We are storing the uncomplete message if the try/catch for loading JSON is failing
         self.__cache = ''
     # Methods
     def run(self):
