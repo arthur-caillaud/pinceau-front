@@ -10,6 +10,8 @@ except ImportError:
     from gui.buttons import create_ColorButton, create_ShapeButton
 
 class PinceauMenu:
+    # Class creating the menu bar on the canvas.
+    # We can change the color and shape from the toolbar.
     def __init__(self, master, change_color, change_shape):
         self.__master = master
         self.__color_buttons_frame = Frame(self.__master)

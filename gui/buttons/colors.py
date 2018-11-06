@@ -5,6 +5,7 @@ except ImportError:
     from tkinter import Button, BOTTOM, LEFT
 
 class ColorButton:
+    # Class defining the color buttons from the toolbar.
     def __init__(self, frame, color, change_color):
         self.__frame = frame
         self.__color = color

@@ -5,6 +5,7 @@ except ImportError:
     from tkinter import Button, BOTTOM, LEFT
 
 class ShapeButton:
+    # Class defining the shape buttons from the menu bar.
     def __init__(self, frame, shape, change_shape):
         self.__frame = frame
         self.__shape = shape

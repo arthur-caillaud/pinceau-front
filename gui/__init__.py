@@ -11,7 +11,8 @@ except ImportError:
     from gui.canvas import PinceauCanvas
     from gui.menu import PinceauMenu
 
-
+# Class correcponding to the graphic user interface.
+# We give it a size and a menu.
 class GUI:
     def __init__(self):
         self.__root = Tk()
@@ -26,8 +27,10 @@ class GUI:
         self.__root.mainloop()
     # Exposed methods
     def draw(self, shape):
+        # Methods enabling the drawing of a shape on the whiteboard.
         self.__canvas.draw(shape)
     def erase(self, shape):
+        # Methods used to erase a shape on the whiteboard.
         self.__canvas.erase(shape)
     # Setters
     def set_send(self, send_func):

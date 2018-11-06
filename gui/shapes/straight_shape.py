@@ -4,6 +4,9 @@ try:
 except ImportError:
     from gui.shapes.shape import Shape
 
+# Class conditionning the new shape to a "straight shape".
+# A rectangle becomes a square, a oval becomes a circle and
+# a line becomes a diagonal.
 class StraightShape(Shape):
     def __init__(self, shape):
         # Parent __init__
@@ -15,7 +18,8 @@ class StraightShape(Shape):
             self.set_x2y2(x1x2_abs)
         else :
             self.set_x2y2(y1y2_abs)
-
+    # We define methods acting on the coordinates of the shape being created.
+    # We change the coordinates so that the shape remains "straight".
     def set_x2y2(self, dist):
         x1x2 = self._x2 - self._x1
         y1y2 = self._y2 - self._y1

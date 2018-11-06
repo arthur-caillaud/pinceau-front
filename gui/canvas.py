@@ -9,6 +9,8 @@ try:
 except ImportError:
     from gui.shapes import Oval, Rectangle, Line, Circle, Square, Diagonal, Sticker
 
+# This class contains the methods explaining how to draw a shape
+# using the mouse.
 class PinceauCanvas:
     def __init__(self, master, width, height):
         self.__master = master
@@ -28,19 +30,26 @@ class PinceauCanvas:
         self.bind_events()
 
     def set_send(self, send_func):
+        # Method sending the drawn shape to the server.
         self.__send = send_func
 
     def switch_shape_mode(self):
+        # Method enabling to switch from a straight shape to a nomrmal shape
+        # and vice-versa.
         self.__shape_mode = ('straight' if self.__shape_mode == 'normal' else 'normal')
 
     def switch_draw_mode(self):
+        # Method enabling to switch from the drawing mode to the erasing mode
+        # and vice-versa.
         self.__draw_mode = ('erase' if self.__draw_mode == 'add' else 'add')
 
     def change_color(self, tmp_color, color):
+        # Method enabling to switch from one color to another.
         self.__tmp_color = tmp_color
         self.__final_color = color
 
     def change_shape(self, shape_type):
+        # Method enabling to switch from one shape to another.
         self.__shape_type = shape_type
 
     def pack(self):
@@ -54,6 +63,10 @@ class PinceauCanvas:
         self.__canvas.bind('<ButtonRelease-1>', self.mouse_release)
 
     def key_press(self, event):
+        # Method to detect if the 'CTRL' key or 'MAJ' key is pressed using the
+        # keycodes from iOS and Windows.
+        # Indeed, if 'CTRL' is pressed, we turn to erasing mode.
+        # And if 'MAJ" is pressed, we turn to straight shapes mode.
         keycode = event.keycode
         if keycode == 262145 or keycode == 262401:
             self.switch_draw_mode()
@@ -80,6 +93,7 @@ class PinceauCanvas:
             }
 
     def erase(self, action):
+        # Method erasing a shape on the canvas.
         x, y = action['x'], action['y']
         shape = self.__canvas.find_closest(x, y)
         if shape:
@@ -105,6 +119,7 @@ class PinceauCanvas:
             self.__tmp_rendered = None
 
     def draw(self, shape):
+        # Method drawing a shape on the canvas.
         self.__canvas.delete(self.__tmp_rendered)
         rendered_shape = None
         if shape['type'] == 'rectangle' and shape['mode'] == 'normal':
