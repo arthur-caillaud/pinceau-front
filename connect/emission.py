@@ -17,14 +17,21 @@ class Emission(Thread):
         self.connect()
         while self.__is_running :
             with self.__verrou:
-                message = self.__cache
-                if message != None:
-                    self.__connexion.send(message)
-                    self.__cache = None
-    # If the message to send to the server is a shape, this method is used.
-    def send(self, action):
-        self.__cache = json.dumps(action).encode()
-    # If the message to send to the server is a connection request,
-    # then this method is used.
+                self.send_cache()
+    # Send the content of the cache to the backend server
+    def send_cache(self):
+        action = self.__cache
+        if action != None:
+            message = json.dumps(action).encode()
+            self.__connexion.send(message)
+            self.__cache = None
+            if action['action'] == 'disconnect':
+                self.__is_running = False
+    # Set the cache that will be send to the backend server
+    def set_cache(self, action):
+        self.__cache = action
+    # The first request emitted to the server is a sync request to get all past actions
     def connect(self):
-        self.send({'action': 'connect'})
+        self.set_cache({'action': 'sync'})
+    def close(self):
+        self.set_cache({'action': 'disconnect'})

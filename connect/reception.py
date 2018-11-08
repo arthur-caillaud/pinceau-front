@@ -34,6 +34,8 @@ class Reception(Thread):
                             self.erase(shape)
             except:
                 self.__cache = message
+    def close(self):
+       self.__is_running = False
     # Setters
     def set_draw(self, draw_func):
         # This method is used in app.py. It stores the received shape.
