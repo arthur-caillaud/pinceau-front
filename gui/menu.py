@@ -19,7 +19,7 @@ class PinceauMenu:
         self.__change_color = change_color
         self.__change_shape = change_shape
         self.__color_buttons = ['red', 'green', 'blue', 'orange', 'yellow', 'purple', 'pink', 'brown', 'white', 'black']
-        self.__shape_buttons = ['rectangle', 'oval', 'line', 'sticker']
+        self.__shape_buttons = ['rectangle', 'oval', 'line']
 
     def pack(self):
         self.__color_buttons_frame.pack(side = BOTTOM)

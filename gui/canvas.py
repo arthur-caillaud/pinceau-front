@@ -5,12 +5,11 @@ except ImportError:
     from tkinter import Canvas
 # Internal modules
 try:
-    from shapes import Oval, Rectangle, Line, Circle, Square, Diagonal, Sticker
+    from shapes import Oval, Rectangle, Line, Circle, Square, Diagonal
 except ImportError:
-    from gui.shapes import Oval, Rectangle, Line, Circle, Square, Diagonal, Sticker
+    from gui.shapes import Oval, Rectangle, Line, Circle, Square, Diagonal
 
-# This class contains the methods explaining how to draw a shape
-# using the mouse.
+# This class contains the methods explaining how to draw a shape using the mouse
 class PinceauCanvas:
     def __init__(self, master, width, height):
         self.__master = master
@@ -68,7 +67,7 @@ class PinceauCanvas:
         # Indeed, if 'CTRL' is pressed, we turn to erasing mode.
         # And if 'MAJ" is pressed, we turn to straight shapes mode.
         keycode = event.keycode
-        if keycode == 262145 or keycode == 262401:
+        if keycode == 262145 or keycode == 262401 or keycode == 17:
             self.switch_draw_mode()
         if keycode == 131330 or keycode == 131074 or keycode == 131076 or keycode == 16: # Maj key is pressed
             self.switch_shape_mode()
@@ -134,7 +133,5 @@ class PinceauCanvas:
             rendered_shape = Line(shape)
         elif shape['type'] == 'line' and shape['mode'] == 'straight':
             rendered_shape = Diagonal(shape)
-        elif shape['type'] == 'sticker':
-            rendered_shape = Sticker(shape)
         shape_id = rendered_shape.draw_on(self.__canvas)
         return shape_id
