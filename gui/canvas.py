@@ -67,7 +67,7 @@ class PinceauCanvas:
         # Indeed, if 'CTRL' is pressed, we turn to erasing mode.
         # And if 'MAJ" is pressed, we turn to straight shapes mode.
         keycode = event.keycode
-        if keycode == 262145 or keycode == 262401 or keycode == 17:
+        if keycode == 262145 or keycode == 262401 or keycode == 17: # Ctrl key is pressed
             self.switch_draw_mode()
         if keycode == 131330 or keycode == 131074 or keycode == 131076 or keycode == 16: # Maj key is pressed
             self.switch_shape_mode()
