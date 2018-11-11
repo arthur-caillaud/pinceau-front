@@ -32,7 +32,7 @@ class Reception(Thread):
                             self.draw(shape)
                         elif shape['action'] == 'erase':
                             self.erase(shape)
-            except:
+            except ValueError:
                 self.__cache = message
     def close(self):
        self.__is_running = False
